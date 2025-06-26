@@ -19,7 +19,7 @@ public class Professor {
 	String getDescricao() {
 		String desc = "";
 		
-		desc = "Prof. "+this.titulacao+this.nome+" - mat "+String.valueOf(this.matricula);
+		desc = "Prof. "+this.titulacao+" "+this.nome+" - mat "+String.valueOf(this.matricula);
 		
 		return desc;
 	}
