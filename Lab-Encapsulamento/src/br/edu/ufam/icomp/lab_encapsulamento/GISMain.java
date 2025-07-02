@@ -5,7 +5,7 @@ public class GISMain {
 
 	public static void main(String[] args) {
 		
-		ArrayList<Localizavel> vetorLocalizaveis = new ArrayList<Localizavel>();
+		Localizavel vetorLocalizaveis[] = new Localizavel[4];
 		
 		Posicao pos1 = new Posicao(-3.089242, -59.964874, 88.374);
 		
@@ -21,17 +21,20 @@ public class GISMain {
 		CarroLuxuoso carL1 = new CarroLuxuoso("dev1");
 		CarroLuxuoso carL2 = new CarroLuxuoso("dev2");
 		
+		System.out.println("");
+		
+		vetorLocalizaveis[0] = cel1;
+		vetorLocalizaveis[1] = cel2;
+		vetorLocalizaveis[2] = carL1;
+		vetorLocalizaveis[3] = carL2;
 		
 		
-		vetorLocalizaveis.add(cel1);
-		vetorLocalizaveis.add(cel2);
-		vetorLocalizaveis.add(carL1);
-		vetorLocalizaveis.add(carL2);
-		
-		for(Localizavel obj : vetorLocalizaveis) {
-			System.out.printf(obj.getPosicao().toString());
+		for(int i =0;i<vetorLocalizaveis.length;i++) {
 			System.out.println("");
+			System.out.printf(vetorLocalizaveis[0].getPosicao().toString());
 		}
+		
+
 	}
 
 }
