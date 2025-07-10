@@ -5,13 +5,25 @@ public class Coordenada {
 	private int posY;
 	private int digito;
 	
-	public Coordenada(int posX, int posY, int digito) {
+	public Coordenada(int posX, int posY, int digito) throws CoordenadaNegativaException, CoordenadaForaDosLimitesException, DigitoInvalidoException {
 		if(posX<0 || posY<0) {
-			CoordenadaNegativaException e = null;
-			System.out.print(e);
-		}else {
+			throw new CoordenadaNegativaException();
+		}
+		else {
 			if(posX>30000 || posY>30000) {
-				
+				throw new CoordenadaForaDosLimitesException();	
+			}else {
+				if(digito<0 || digito>9) {
+					throw new DigitoInvalidoException();
+				}else {
+					if(((posX+posY)%10) != digito) {
+						throw new DigitoInvalidoException();
+					}else {
+						this.posX = posX;
+						this.posY = posY;
+						this.digito = digito;
+					}
+				}
 			}
 		}
 	}
