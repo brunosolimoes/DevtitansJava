@@ -1,56 +1,47 @@
-import java.util.*;
+package br.edu.ufam.icomp.lab_excecoes;
 
-public class Turma {
-	String disciplina;
-	int ano;
-	int semestre;
-	Professor professor;
-	ArrayList<Aluno> alunos;
+public class Caminho {
+	private Coordenada caminho[];
+	private int tamanho;
 	
-	Turma(String disciplina, int ano, int semestre, Professor professor){
-		this.disciplina = disciplina;
-		this.ano = ano;
-		this.semestre = semestre;
-		this.professor = professor;
-		this.alunos = new ArrayList<Aluno>();
+	public Caminho(int maxTam) {
+		this.caminho = new Coordenada[maxTam];
+		this.tamanho = 0;
 	}
 	
-	void addAluno(Aluno aluno) {
-		
-		if(this.getAluno(aluno.matricula) == null) {
-			this.alunos.add(aluno);
-		}
-		
+	public int tamanho() {
+		return this.tamanho;
 	}
 	
-	Aluno getAluno(int matricula) {
-		
-		for(Aluno al : this.alunos) {
-			if(al.matricula == matricula) {
-				return al;
+	public void addCoordenada(Coordenada coordenada) throws TamanhoMaximoExcedidoException, DistanciaEntrePontosExcedidaException {
+		if(this.tamanho<this.caminho.length) {
+			if(this.tamanho==0) {
+				this.caminho[0] = coordenada;
+				this.tamanho = this.tamanho+1;
+			}else {
+				if((this.caminho[this.tamanho()-1].distancia(coordenada))>15) {
+					throw new DistanciaEntrePontosExcedidaException();
+				}else {
+					this.caminho[this.tamanho()] = coordenada;
+					this.tamanho = this.tamanho+1;
+				}
 			}
+			
+		}else {
+			throw new TamanhoMaximoExcedidoException();
 		}
-		return null;
 	}
 	
-	double getMediaIdade() {
-		double med = 0;
-		
-		for(Aluno al : this.alunos) {
-			med = med + al.getIdade();
-		}
-		med = med/this.alunos.size();
-		
-		return med;
+	public void reset() {
+		this.caminho = null;
+		this.tamanho = 0;
 	}
 	
-	String getDescricao() {
-		String desc = "";
+	public String toString() {
+		String desc = "Dados do caminho: \n  - Quantidade de pontos: "+String.valueOf(this.tamanho()) + "\n  - Pontos:";
 		
-		desc = "Turma " + this.disciplina + " - " + String.valueOf(this.ano) + "/" + String.valueOf(this.semestre) + " (" + this.professor.getDescricao() + "):";
-		
-		for(Aluno al : this.alunos) {
-			desc = desc + "\n  - Aluno " + String.valueOf(this.alunos.indexOf(al)+1) + ": " + al.getDescricao();
+		for(int i=0;i<this.tamanho();i++) {
+			desc = desc + "\n    -> "+ this.caminho[i].toString();
 		}
 		
 		return desc;
