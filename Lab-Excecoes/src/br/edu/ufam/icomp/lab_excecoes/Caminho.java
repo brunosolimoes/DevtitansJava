@@ -37,9 +37,9 @@ public class Caminho {
 	}
 	
 	public String toString() {
-		String desc = "Dados do caminho: \n  - Quantidade de pontos: "+String.valueOf(this.tamanho) + "\n  - Pontos:";
+		String desc = "Dados do caminho: \n  - Quantidade de pontos: "+String.valueOf(this.tamanho()) + "\n  - Pontos:";
 		
-		for(int i=0;i<this.caminho.length;i++) {
+		for(int i=0;i<this.tamanho();i++) {
 			desc = desc + "\n    -> "+ this.caminho[i].toString();
 		}
 		
