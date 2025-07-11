@@ -2,13 +2,11 @@ package br.edu.ufam.icomp.lab_excecoes;
 
 public class Caminho {
 	private Coordenada caminho[];
-	private int maxTam;
 	private int tamanho;
 	
 	public Caminho(int maxTam) {
 		this.caminho = null;
-		this.tamanho = 0;
-		this.maxTam = maxTam;
+		this.tamanho = maxTam;
 	}
 	
 	public int tamanho() {
@@ -17,7 +15,7 @@ public class Caminho {
 	}
 	
 	public void addCoordenada(Coordenada coordenada) throws TamanhoMaximoExcedidoException, DistanciaEntrePontosExcedidaException {
-		if(this.tamanho()<this.maxTam) {
+		if(this.tamanho()<this.tamanho) {
 			if(this.caminho == null) {
 				this.caminho[0] = coordenada;
 			}else {
