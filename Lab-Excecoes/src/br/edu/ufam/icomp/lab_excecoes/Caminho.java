@@ -10,7 +10,7 @@ public class Caminho {
 	}
 	
 	public int tamanho() {
-		if(this.caminho.length == 0) return 0; 
+		if(this.caminho == null) return 0; 
 		return this.caminho.length;
 	}
 	
